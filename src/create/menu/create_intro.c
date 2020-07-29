@@ -55,8 +55,12 @@ intro_t *create_intro(window_t *win)
     intro->color = sfColor_fromRGBA(0, 0, 0, 255);
     intro->fade_clock = sfClock_create();
     intro->name = init_intro_text(win);
+    intro->clock_loop = sfClock_create();
+    intro->time_elapsed = 0;
     sfRectangleShape_setSize(intro->fade,
     fvec((float)win->mode.width, (float)win->mode.height));
     sfRectangleShape_setFillColor(intro->fade, intro->color);
+    intro->bg_sound = sfMusic_createFromFile("assets/sound/water.ogg");
+    sfMusic_setVolume(intro->bg_sound, win->volume);
     return (intro);
 }

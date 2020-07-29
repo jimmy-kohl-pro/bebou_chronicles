@@ -9,7 +9,7 @@
 #include "my.h"
 #include "tools.h"
 
-sprite_t *create_sprite_map(window_t *win)
+sprite_t *create_sprite_map(void)
 {
     sprite_t *map = my_calloc(sizeof(sprite_t));
 
@@ -26,13 +26,5 @@ sprite_t *create_sprite_map(window_t *win)
         return FAIL;
     sfSprite_setTexture(map->sprite, map->texture, sfTrue);
     sfSprite_setTextureRect(map->sprite, map->rect);
-    return map;
-}
-
-map_t *create_game_map(window_t *win)
-{
-    map_t *map = my_calloc(sizeof(map_t));
-
-    map->sprite = create_sprite_map(win);
     return map;
 }

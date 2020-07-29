@@ -9,7 +9,7 @@
 #include "tools.h"
 #include "my.h"
 
-sprite_t *create_menu_background(window_t *win)
+sprite_t *create_menu_background(void)
 {
     sprite_t *bg = my_calloc(sizeof(sprite_t));
 
@@ -27,4 +27,25 @@ sprite_t *create_menu_background(window_t *win)
     sfSprite_setTexture(bg->sprite, bg->texture, sfTrue);
     sfSprite_setTextureRect(bg->sprite, bg->rect);
     return (bg);
+}
+
+sprite_t *create_logo(void)
+{
+    sprite_t *logo = my_calloc(sizeof(sprite_t));
+
+    logo->clock = sfClock_create();
+    logo->texture = sfTexture_createFromFile("assets/image/bebou_logo.png",
+                NULL);
+    logo->sprite = sfSprite_create();
+    logo->pos.x = 50;
+    logo->pos.y = 50;
+    logo->rect.left = 0;
+    logo->rect.top = 0;
+    logo->rect.width = 2131;
+    logo->rect.height = 763;
+    if (!logo->texture || !logo->sprite)
+        return FAIL;
+    sfSprite_setTexture(logo->sprite, logo->texture, sfTrue);
+    sfSprite_setTextureRect(logo->sprite, logo->rect);
+    return (logo);
 }

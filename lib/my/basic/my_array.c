@@ -30,6 +30,8 @@ int free_array(char **array)
 {
     int i = -1;
 
+    if (!array)
+        return 0;
     while (array[++i])
         free(array[i]);
     free(array[i]);

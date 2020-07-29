@@ -6,6 +6,7 @@
 */
 
 #include <SFML/Graphics.h>
+#include <math.h>
 
 sfVector2f fvec(float x, float y)
 {
@@ -32,4 +33,11 @@ sfVector2u uvec(unsigned int x, unsigned int y)
     xy.x = x;
     xy.y = y;
     return (xy);
+}
+
+float dist_vec(sfVector2f a, sfVector2f b)
+{
+    float distance = sqrtf(powf(b.x - a.x, 2) + powf(b.y - a.y, 2));
+
+    return (distance);
 }

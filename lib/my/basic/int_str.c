@@ -6,10 +6,12 @@
 */
 
 #include <stdlib.h>
+#include "my.h"
+#include <math.h>
 
 char *int_str(int n)
 {
-    char *str;
+    char *str = NULL;
     int i = 0;
     int tmp = n;
 
@@ -17,6 +19,8 @@ char *int_str(int n)
         n /= 10;
         i++;
     }
+    if (i == 0)
+        return my_strdup("0");
     str = malloc(sizeof(char) * (i + 1));
     str[i] = '\0';
     while (--i >= 0) {
@@ -24,4 +28,18 @@ char *int_str(int n)
         tmp /= 10;
     }
     return (str);
+}
+
+char *float_str(float n, int decimal)
+{
+    char *str = NULL;
+    int in = (float)n;
+    float fn = n - (int)in;
+    register int i = 0;
+
+    if (fn == (float)0 || decimal == 0)
+        return int_str(in);
+    else
+        return my_strthreecat(int_str(in), ".",
+                                int_str((int)(fn * pow(10, decimal))));
 }

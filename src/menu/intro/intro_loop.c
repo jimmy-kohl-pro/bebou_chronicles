@@ -28,8 +28,10 @@ int check_event_intro(window_t *win, intro_t *intro)
 
 void display_intro(window_t *win, intro_t *intro)
 {
+    sfMusic_play(intro->bg_sound);
     sfClock_restart(intro->fade_clock);
     while (sfRenderWindow_isOpen(win->window) && intro->activated) {
+        get_elapsed_time(&intro->time_elapsed, intro->clock_loop);
         check_event_intro(win, intro);
         update_animclock_column(120, intro->bg, 3, 7);
         display_sprite_scl(win->window, intro->bg,
@@ -39,4 +41,6 @@ void display_intro(window_t *win, intro_t *intro)
         sfRenderWindow_display(win->window);
         sfRenderWindow_clear(win->window, sfBlack);
     }
+    sfMusic_stop(intro->bg_sound);
+    sfMusic_destroy(intro->bg_sound);
 }

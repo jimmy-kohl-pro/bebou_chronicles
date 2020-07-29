@@ -9,6 +9,13 @@
 #define TOOLS_H
 
 #include <SFML/Graphics.h>
+#include "basic.h"
+
+// From map.h
+struct props_s;
+
+// From game.h
+struct player_s;
 
 #define ORIGIN (fvec(0, 0))
 
@@ -20,6 +27,10 @@ sfVector2f fvec(float x, float y);
 sfVector2i ivec(int x, int y);
 // 2D x and y in unsigned int
 sfVector2u uvec(unsigned int x, unsigned int y);
+
+float dist_vec(sfVector2f a, sfVector2f b);
+
+// Hitbox
 
 // Sprite //
 
@@ -38,8 +49,40 @@ void disp_text(sfRenderWindow *win, text_t *text);
 
 // Update animation
 void update_animclock(int intervl, sprite_t *elem, int max);
+void update_animclock_pers(int intervl, sprite_t *elem, int max);
 
 // Update animation on several column
 void update_animclock_column(int intervl, sprite_t *elem, int max, int column);
+
+void get_elapsed_time(float *time_elapsed, sfClock *clock);
+
+// ****** SCREENSHOT ****** //
+
+void take_screenshot(window_t *win);
+sprite_t *window_to_sprite(window_t *win);
+
+// ****** MATH ****** //
+
+// it takes the current position of the entity, the position of its
+// destination, the speed, and the time elapsed since the last frame
+// (to be framerate independent).
+// And it returns the new position of the entity towards its destination.
+sfVector2f move_towards(sfVector2f pos, sfVector2f next_pos,
+                            int speed, float elapsed_time);
+
+int random_range(int lower, int upper);
+
+// ****** TRANSFORM ****** //
+
+sfSprite *sprite_turn_horizontally(sfSprite *original);
+
+// ****** Debug ******* //
+
+void display_hitbox(window_t *win, struct props_s *props,
+struct player_s *player);
+
+// ****** Cursor ****** //
+
+void display_cursor(window_t *win, float elapsed_time);
 
 #endif /* !TOOLS_H */

@@ -77,6 +77,11 @@ char *str_until_last(char *, char);
 int str_begin_last(char **, char);
 int where_last_char(char *, char);
 int count_ascii(char *str, char c);
-char *int_str(int);
+char *int_str(int n);
+char *float_str(float n, int decimal);
+float my_getfloat(char *str, int decimal);
+char *get_next_line(int fd);
+char *get_next_line_titou(int fd);
+char *gnl_fight(int fd);
 
 #endif

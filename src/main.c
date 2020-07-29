@@ -9,7 +9,8 @@
 #include "basic.h"
 #include "menu_h.h"
 
-static int launch(void) {
+static int launch(void)
+{
     window_t *win = NULL;
     char *seed;
 
@@ -23,7 +24,7 @@ static int launch(void) {
 static int display_h(void)
 {
     my_printf("\tUSAGE\n./my_rpg\n");
-    my_printf("\tDESCRIPTION\nYou play romans and defend your empire !\n");
+    my_printf("\tDESCRIPTION\nWelcome to Bebou Chronicles !\n");
     return SUCCESS;
 }
 
@@ -49,12 +50,13 @@ static int find_env_var(char *restrict var, char **restrict env)
 
 int main(int ac, char **av, char **env)
 {
-    if (ac == 2 && !my_strcmp("-h", av[1]))
+    if (ac == 2 && !my_strcmp("-h", av[1])) {
         display_h();
-    else if (!env || !find_env_var("DISPLAY", env) ||
+        return 0;
+    } else if (!env || !find_env_var("DISPLAY", env) ||
     !find_env_var("XAUTHORITY", env) || ac != 1)
         return 84;
-    else if (!launch())
+    if (!launch())
         return 84;
     return 0;
 }

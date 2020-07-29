@@ -1,0 +1,3 @@
+sprite=assets/image/big_table.png
+hitbox=0x90x375x190
+id=11

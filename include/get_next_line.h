@@ -1,24 +1,11 @@
 /*
 ** EPITECH PROJECT, 2019
-** getnextline.h
+** CPE_getnextline_2019
 ** File description:
-** header file of getnextline, with read_size
+** get_next_line.h
 */
 
-#ifndef GET_NEXT_LINE_H_
-#define GET_NEXT_LINE_H_
-
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-
 #ifndef READ_SIZE
-#define READ_SIZE (2048)
+#define READ_SIZE (1)
+
 #endif
-
-char *get_next_line(int);
-
-#endif /* !GET_NEXT_LINE_H_ */

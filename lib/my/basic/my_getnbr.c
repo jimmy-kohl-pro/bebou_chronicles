@@ -6,6 +6,7 @@
 */
 
 #include "my.h"
+#include "math.h"
 
 long negativenumber(long number, long neg)
 {
@@ -52,4 +53,18 @@ int my_getnbr(char *str)
         return (finalnumber);
     } else
         return (0);
+}
+
+float my_getfloat(char *str, int decimal)
+{
+    float nbr = 0;
+    int in = my_getnbr(str);
+    float fn = (float)0;
+
+    str_begin_last(&str, '.');
+    fn = (float)my_getnbr(str);
+    if (fn == (float)0 || decimal == 0)
+        return (float)in;
+    else
+        return (float)in + (float)(fn / pow(10, decimal));
 }

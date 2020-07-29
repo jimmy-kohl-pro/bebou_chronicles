@@ -7,12 +7,12 @@
 
 #include "menu_h.h"
 #include "tools.h"
-#include <stdlib.h>
 #include "my.h"
 
 static void set_button(sprite_t *sprite_button)
 {
-    sfSprite_setTexture(sprite_button->sprite, sprite_button->texture, sfTrue);
+    sfSprite_setTexture(sprite_button->sprite, sprite_button->texture,
+        sfTrue);
     sfSprite_setTextureRect(sprite_button->sprite, sprite_button->rect);
     sfSprite_setOrigin(sprite_button->sprite,
                         fvec((float)sprite_button->rect.width / 2,
@@ -26,12 +26,12 @@ button_t *create_menu_play(window_t *win)
 
     play->img = malloc(sizeof(sprite_t));
     play->img->texture = sfTexture_createFromFile(
-                                    "assets/image/button_play.png", NULL);
+                                    "assets/image/menu_buttons.png", NULL);
     play->img->sprite = sfSprite_create();
     play->img->rect.left = 0;
     play->img->rect.top = 0;
-    play->img->rect.width = 286;
-    play->img->rect.height = 123;
+    play->img->rect.width = 290;
+    play->img->rect.height = 120;
     play->img->pos.x = (float)win->mode.width / 1.25;
     play->img->pos.y = (float)win->mode.height / 1.9;
     if (!play->img->texture || !play->img->sprite)
@@ -47,12 +47,12 @@ button_t *create_menu_exit(window_t *win)
 
     exit->img = my_calloc(sizeof(sprite_t));
     exit->img->texture = sfTexture_createFromFile(
-                            "assets/image/button_exit.png", NULL);
+                            "assets/image/menu_buttons.png", NULL);
     exit->img->sprite = sfSprite_create();
     exit->img->rect.left = 0;
-    exit->img->rect.top = 0;
-    exit->img->rect.width = 286;
-    exit->img->rect.height = 123;
+    exit->img->rect.top = 240;
+    exit->img->rect.width = 290;
+    exit->img->rect.height = 120;
     exit->img->pos.x = (float)win->mode.width / 1.25;
     exit->img->pos.y = (float)win->mode.height / 1.9 + 123 * 2;
     if (!exit->img->texture || !exit->img->sprite)
@@ -68,12 +68,12 @@ button_t *create_menu_options(window_t *win)
 
     options->img = my_calloc(sizeof(sprite_t));
     options->img->texture = sfTexture_createFromFile(
-                            "assets/image/button_options.png", NULL);
+                            "assets/image/menu_buttons.png", NULL);
     options->img->sprite = sfSprite_create();
     options->img->rect.left = 0;
-    options->img->rect.top = 0;
-    options->img->rect.width = 286;
-    options->img->rect.height = 123;
+    options->img->rect.top = 120;
+    options->img->rect.width = 290;
+    options->img->rect.height = 120;
     options->img->pos.x = (float)win->mode.width / 1.25;
     options->img->pos.y = (float)win->mode.height / 1.9 + 123;
     if (!options->img->texture || !options->img->sprite)
@@ -89,12 +89,12 @@ button_t *create_menu_map(window_t *win)
 
     map->img = my_calloc(sizeof(sprite_t));
     map->img->texture = sfTexture_createFromFile(
-                            "assets/image/button_create_map.png", NULL);
+                            "assets/image/menu_buttons.png", NULL);
     map->img->sprite = sfSprite_create();
     map->img->rect.left = 0;
-    map->img->rect.top = 0;
-    map->img->rect.width = 286;
-    map->img->rect.height = 123;
+    map->img->rect.top = 360;
+    map->img->rect.width = 290;
+    map->img->rect.height = 120;
     map->img->pos.x = (float)win->mode.width / 10;
     map->img->pos.y = (float)win->mode.height / 1.9 + 123 * 2;
     if (!map->img->texture || !map->img->sprite)

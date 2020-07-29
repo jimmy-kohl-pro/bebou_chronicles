@@ -45,7 +45,9 @@ SRC	=	my_compute_power_rec.c	\
 		my_str_to_word_array.c	\
 		my_stradvanced.c		\
 		get_next_line.c			\
-		int_str.c
+		get_next_line_titou.c	\
+		gnl_fight.c				\
+		int_str.c				\
 
 INC		=	-I ../../../include
 

@@ -1,0 +1,3 @@
+sprite=assets/image/pnj3.png
+hitbox=50x150x90x70
+id=18

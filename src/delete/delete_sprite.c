@@ -9,7 +9,8 @@
 
 void delete_sprite(sprite_t *sprite)
 {
-    sfClock_destroy(sprite->clock);
+    if (sprite->clock)
+        sfClock_destroy(sprite->clock);
     sfTexture_destroy(sprite->texture);
     sfSprite_destroy(sprite->sprite);
     free(sprite);
