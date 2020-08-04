@@ -1,3 +1,4 @@
 sprite=assets/image/temple.png
 hitbox=270x1200x1470x500
 id=7
+type=0

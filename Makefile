@@ -112,7 +112,7 @@ SRC	=		main.c										\
 			game/map/map_draw.c							\
 			game/map/map_load.c							\
 			game/map/map_read_pattern.c					\
-			game/map/map_read_props.c					\
+			game/map/map_read_objects.c					\
 			game/map/map_sort.c							\
 			game/map/map_collision.c					\
 			game/inventory/manage_skills.c				\

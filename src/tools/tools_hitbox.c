@@ -21,16 +21,16 @@ void append_hitbox(sfVertexArray *array, sfVector2f pos, sfFloatRect hitbox)
         + hitbox.width, pos.y + hitbox.top + hitbox.height), sfRed, ORIGIN});
 }
 
-void display_hitbox(window_t *win, props_t *props, player_t *player)
+void display_hitbox(window_t *win, objects_t *objects, player_t *player)
 {
-    props_t *temp_props = props;
+    objects_t *temp_objects = objects;
     sfVertexArray *array = sfVertexArray_create();
 
     sfVertexArray_setPrimitiveType(array, sfQuads);
-    for (; props; props = props->next)
-        append_hitbox(array, props->pos, props->hitbox);
+    for (; objects; objects = objects->next)
+        append_hitbox(array, objects->pos, objects->hitbox);
     append_hitbox(array, player->sprite->pos, player->sprite->hitbox);
     sfRenderWindow_drawVertexArray(win->window, array, NULL);
     sfVertexArray_destroy(array);
-    props = temp_props;
+    objects = temp_objects;
 }

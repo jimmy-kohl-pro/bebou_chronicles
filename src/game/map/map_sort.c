@@ -7,10 +7,10 @@
 
 #include "map.h"
 
-void insert_sort_y(props_t *new, props_t **head)
+void insert_sort_y(objects_t *new, objects_t **head)
 {
-    props_t *temp = (*head);
-    props_t *save = NULL;
+    objects_t *temp = (*head);
+    objects_t *save = NULL;
 
     while ((temp) && (new->pos.y + new->hitbox.top >
     temp->pos.y + temp->hitbox.top)) {

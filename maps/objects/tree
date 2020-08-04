@@ -1,3 +1,4 @@
 sprite=assets/image/tree.png
 hitbox=420x1100x390x150
 id=8
+type=0

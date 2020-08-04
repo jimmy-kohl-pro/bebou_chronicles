@@ -52,33 +52,33 @@ void display_pattern(sfRenderWindow *win, pattern_t *pattern)
     pattern = save_head;
 }
 
-void display_props(window_t *win, props_t *props, game_t *game)
+void display_objects(window_t *win, objects_t *objects, game_t *game)
 {
-    props_t *save_head = props;
+    objects_t *save_head = objects;
     float pos_y = game->player->sprite->pos.y
                 + game->player->sprite->hitbox.top;
 
-    if (!props) {
+    if (!objects) {
         display_player(win, game->player, game);
         return;
-    } if (pos_y < props->pos.y + props->hitbox.top)
+    } if (pos_y < objects->pos.y + objects->hitbox.top)
         display_player(win, game->player, game);
-    for (; props->next; props = props->next) {
-        if (!props->sprite)
+    for (; objects->next; objects = objects->next) {
+        if (!objects->sprite)
             continue;
-        sfRenderWindow_drawSprite(win->window, props->sprite, NULL);
-        if (pos_y >= props->pos.y + props->hitbox.top
-        && pos_y <= props->next->pos.y + props->next->hitbox.top)
+        sfRenderWindow_drawSprite(win->window, objects->sprite, NULL);
+        if (pos_y >= objects->pos.y + objects->hitbox.top
+        && pos_y <= objects->next->pos.y + objects->next->hitbox.top)
             display_player(win, game->player, game);
     }
-    sfRenderWindow_drawSprite(win->window, props->sprite, NULL);
-    if (pos_y > props->pos.y + props->hitbox.top)
+    sfRenderWindow_drawSprite(win->window, objects->sprite, NULL);
+    if (pos_y > objects->pos.y + objects->hitbox.top)
         display_player(win, game->player, game);
-    props = save_head;
+    objects = save_head;
 }
 
 void display_map(window_t *win, game_t *game)
 {
     display_pattern(win->window, game->map->pattern);
-    display_props(win, game->map->props, game);
+    display_objects(win, game->map->objects, game);
 }

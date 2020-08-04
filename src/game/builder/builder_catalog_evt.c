@@ -27,7 +27,7 @@ static void released_mouse(window_t *win, game_t *game)
 
 static void passed_mouse(window_t *win, game_t *game, sfEvent event)
 {
-    props_list_t *element = game->build->props_list;
+    objects_list_t *element = game->build->objects_list;
 
     while (element) {
         element->sprite_ico->hitbox = sfSprite_getGlobalBounds(
@@ -39,7 +39,7 @@ static void passed_mouse(window_t *win, game_t *game, sfEvent event)
             game->item_name->str = my_strdup(element->name);
             disp_text(win->window, game->item_name);
             event.type == sfEvtMouseButtonPressed ?
-            game->build->posing_props = element : 0;
+            game->build->posing_objects = element : 0;
             return;
         }
         element = element->next;

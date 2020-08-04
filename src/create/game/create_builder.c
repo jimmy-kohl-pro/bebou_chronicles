@@ -48,7 +48,7 @@ build_t *create_builder(window_t *win)
     build_t *build = my_calloc(sizeof(build_t));
 
     build->catalog = create_build_catalog(win);
-    build->props_list = create_props_list();
+    build->objects_list = create_objects_list();
     build->b_build = create_button_build(win);
     build->b_save = create_button_save_build(win);
     build->view = create_build_camera(win);

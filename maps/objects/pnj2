@@ -1,3 +1,4 @@
 sprite=assets/image/pnj2.png
 hitbox=100x350x148x58
 id=17
+type=1

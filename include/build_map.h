@@ -14,7 +14,7 @@
 // From map.h
 struct map_s;
 
-typedef struct props_list
+typedef struct objects_list
 {
     int id;
     char *name;
@@ -23,14 +23,14 @@ typedef struct props_list
     sprite_t *sprite_ico;
     sprite_t *sprite;
     text_t stack;
-    struct props_list *next;
-} props_list_t;
+    struct objects_list *next;
+} objects_list_t;
 
-typedef struct props_to_del_s
+typedef struct objects_to_del_s
 {
     char *name;
     sfVector2f pos;
-} props_to_del_t;
+} objects_to_del_t;
 
 typedef enum state_build_n
 {
@@ -41,8 +41,8 @@ typedef enum state_build_n
 typedef struct build_s
 {
     sfView *view;
-    props_list_t *props_list;
-    props_list_t *posing_props;
+    objects_list_t *objects_list;
+    objects_list_t *posing_objects;
     sprite_t *catalog;
     button_t *b_build;
     button_t *b_save;
@@ -56,7 +56,7 @@ build_t *create_builder(window_t *win);
 button_t *create_button_build(window_t *win);
 button_t *create_button_save_build(window_t *win);
 
-props_list_t *create_props_list(void);
+objects_list_t *create_objects_list(void);
 
 // ****** Event ****** //
 
@@ -68,14 +68,14 @@ void manage_build_camera(window_t *win, sfView *view, float elapsed_time);
 
 void display_catalog(window_t *win, game_t *game);
 
-// ****** Posing props ****** //
+// ****** Posing objects ****** //
 
-void draw_posing_props(window_t *win, props_list_t *posing_props,
+void draw_posing_objects(window_t *win, objects_list_t *posing_objects,
                                                     sfView *free_cam);
-void add_posing_props(map_t **map, char *name_props, sfVector2f pos_props);
+void add_posing_objects(map_t **map, char *name_objects, sfVector2f pos_objects);
 
-void delete_posing_props(map_t **map, props_to_del_t to_del);
+void delete_posing_objects(map_t **map, objects_to_del_t to_del);
 
-props_to_del_t find_click_props(sfVector2f mouse, struct props_s *props);
+objects_to_del_t find_click_objects(sfVector2f mouse, struct objects_s *objects);
 
 #endif /* !BUILD_MAP_H_ */

@@ -1,3 +1,4 @@
 sprite=assets/image/house4.png
 hitbox=145x238x480x400
 id=4
+type=0

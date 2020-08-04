@@ -1,3 +1,4 @@
 sprite=assets/image/shop.png
 hitbox=0x200x750x300
 id=6
+type=0

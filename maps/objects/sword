@@ -1,3 +1,4 @@
 sprite=assets/image/sword.png
 hitbox=40x80x200x46
 id=10
+type=0

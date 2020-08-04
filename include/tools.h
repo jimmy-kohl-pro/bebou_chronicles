@@ -12,7 +12,7 @@
 #include "basic.h"
 
 // From map.h
-struct props_s;
+struct objects_s;
 
 // From game.h
 struct player_s;
@@ -78,7 +78,7 @@ sfSprite *sprite_turn_horizontally(sfSprite *original);
 
 // ****** Debug ******* //
 
-void display_hitbox(window_t *win, struct props_s *props,
+void display_hitbox(window_t *win, struct objects_s *objects,
 struct player_s *player);
 
 // ****** Cursor ****** //

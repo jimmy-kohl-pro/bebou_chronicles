@@ -1,3 +1,4 @@
 sprite=assets/image/ai.png
 hitbox=0x80x100x28
 id=9
+type=0

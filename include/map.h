@@ -21,21 +21,28 @@ typedef struct pattern_s
     struct pattern_s *next;
 } pattern_t;
 
+typedef enum type_obj_n
+{
+    PROPS,
+    NPC
+} type_obj_e;
+
 // Object on the map
-typedef struct props_s
+typedef struct objects_s
 {
     sfSprite *sprite;
     sfFloatRect hitbox;
     sfVector2f pos;
+    type_obj_e type;
     char *name;
-    struct props_s *next;
-} props_t;
+    struct objects_s *next;
+} objects_t;
 
 typedef struct map_s
 {
     pattern_t *pattern;
     sfSprite *ground;
-    props_t *props;
+    objects_t *objects;
     char *name;
     sfVector2f size;
 } map_t;
@@ -46,10 +53,10 @@ map_t *map_load(char *map_name);
 
 pattern_t *read_pattern(char **map_brut, sfVector2f *size);
 void add_pattern(pattern_t **pattern_list, char b, int height, int width);
-void add_props(props_t **props_list, char *brut_props);
+void add_objects(objects_t **objects_list, char *brut_objects);
 
-props_t *read_props(char **map_brut);
-void insert_sort_y(props_t *new, props_t **head);
+objects_t *read_objects(char **map_brut);
+void insert_sort_y(objects_t *new, objects_t **head);
 
 // ****** Display ****** //
 

@@ -22,10 +22,10 @@ static float larger_side(sfFloatRect hitbox)
     return max;
 }
 
-static sprite_t *create_sprite(props_list_t *items_list, char **props)
+static sprite_t *create_sprite(objects_list_t *items_list, char **objects)
 {
     sprite_t *sprite = my_calloc(sizeof(sprite_t));
-    char **hitbox_brut = my_str_to_word_array(get_var("hitbox", props), "x");
+    char **hitbox_brut = my_str_to_word_array(get_var("hitbox", objects), "x");
     sfFloatRect temp_hitbox;
 
     sprite->texture = sfTexture_createFromFile(items_list->path, NULL);
@@ -41,7 +41,7 @@ static sprite_t *create_sprite(props_list_t *items_list, char **props)
     return sprite;
 }
 
-static sprite_t *create_sprite_ico(props_list_t *items_list)
+static sprite_t *create_sprite_ico(objects_list_t *items_list)
 {
     sprite_t *sprite = my_calloc(sizeof(sprite_t));
 
@@ -58,25 +58,25 @@ static sprite_t *create_sprite_ico(props_list_t *items_list)
     return sprite;
 }
 
-static void add_to_list(props_list_t **list, char **props, char *name)
+static void add_to_list(objects_list_t **list, char **objects, char *name)
 {
-    props_list_t *element = my_calloc(sizeof(props_list_t));
+    objects_list_t *element = my_calloc(sizeof(objects_list_t));
 
-    element->id = my_getnbr(get_var("id", props));
+    element->id = my_getnbr(get_var("id", objects));
     element->name = my_strdup(name);
-    element->path = get_var("sprite", props);
+    element->path = get_var("sprite", objects);
     element->sprite_ico = create_sprite_ico(element);
-    element->sprite = create_sprite(element, props);
+    element->sprite = create_sprite(element, objects);
     element->nb = 1;
     element->next = *list;
     *list = element;
 }
 
-props_list_t *create_props_list(void)
+objects_list_t *create_objects_list(void)
 {
-    props_list_t *props_list = NULL;
-    char **props = NULL;
-    DIR *dir = opendir("maps/props");
+    objects_list_t *objects_list = NULL;
+    char **objects = NULL;
+    DIR *dir = opendir("maps/objects");
     struct dirent *dirent;
 
     if (!dir)
@@ -85,10 +85,10 @@ props_list_t *create_props_list(void)
     for (; dirent != 0; dirent = readdir(dir)) {
         if ((dirent->d_name[0] == '.'))
             continue;
-        props = read_file(my_strcat("maps/props/", dirent->d_name));
-        add_to_list(&props_list, props, dirent->d_name);
-        free_array(props);
+        objects = read_file(my_strcat("maps/objects/", dirent->d_name));
+        add_to_list(&objects_list, objects, dirent->d_name);
+        free_array(objects);
     }
     closedir(dir);
-    return props_list;
+    return objects_list;
 }

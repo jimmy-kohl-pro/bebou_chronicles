@@ -11,7 +11,7 @@
 #include "map.h"
 #include "tools.h"
 
-int find_props(char *name, sfVector2f pos, char **array)
+int find_objects(char *name, sfVector2f pos, char **array)
 {
     register int i = 0;
     register int v = 0;
@@ -37,23 +37,23 @@ int find_props(char *name, sfVector2f pos, char **array)
     return (-1);
 }
 
-void delete_posing_props(map_t **map, props_to_del_t to_del)
+void delete_posing_objects(map_t **map, objects_to_del_t to_del)
 {
     char *filename = my_strcat("maps/", (*map)->name);
     char **map_array = read_file(filename);
     FILE *map_file;
     register int i = 0;
-    int props_selected = -1;
-    char *name_props = NULL;
+    int objects_selected = -1;
+    char *name_objects = NULL;
 
     if (!my_strcmp(to_del.name, "null"))
         return;
-    name_props = my_strdup(to_del.name);
-    props_selected = find_props(name_props, to_del.pos, map_array);
-    if (props_selected == -1)
+    name_objects = my_strdup(to_del.name);
+    objects_selected = find_objects(name_objects, to_del.pos, map_array);
+    if (objects_selected == -1)
         return;
     map_file = fopen(filename, "w+");
-    delete_var(props_selected, &map_array);
+    delete_var(objects_selected, &map_array);
     for (i = 0; map_array[i]; i++) {
         if (fwrite(map_array[i], my_strlen(map_array[i]), 1, map_file)
         == (size_t)-1)
@@ -61,20 +61,20 @@ void delete_posing_props(map_t **map, props_to_del_t to_del)
         fwrite("\n", 1, 1, map_file);
     }
     fclose(map_file);
-    free(name_props);
+    free(name_objects);
     (*map) = map_load((*map)->name);
 }
 
-void add_posing_props(map_t **map, char *name_props, sfVector2f pos_props)
+void add_posing_objects(map_t **map, char *name_objects, sfVector2f pos_objects)
 {
     char *filename = my_strcat("maps/", (*map)->name);
     char **map_array = read_file(filename);
     FILE *map_file = fopen(filename, "w+");
     register int i = 0;
 
-    new_var(name_props, my_strthreecat(
-            float_str(pos_props.x, 2), "x",
-            float_str(pos_props.y, 2)), &map_array);
+    new_var(name_objects, my_strthreecat(
+            float_str(pos_objects.x, 2), "x",
+            float_str(pos_objects.y, 2)), &map_array);
     for (i = 0; map_array[i]; i++) {
         if (fwrite(map_array[i], my_strlen(map_array[i]), 1, map_file)
         == (size_t)-1)
@@ -85,10 +85,10 @@ void add_posing_props(map_t **map, char *name_props, sfVector2f pos_props)
     *map = map_load((*map)->name);
 }
 
-void draw_posing_props(window_t *win, props_list_t *posing_props,
+void draw_posing_objects(window_t *win, objects_list_t *posing_objects,
                                                     sfView *free_cam)
 {
-    posing_props->sprite->pos = sfRenderWindow_mapPixelToCoords(win->window,
+    posing_objects->sprite->pos = sfRenderWindow_mapPixelToCoords(win->window,
                                                         win->mouse, free_cam);
-    display_sprite(win->window, posing_props->sprite);
+    display_sprite(win->window, posing_objects->sprite);
 }

@@ -1,3 +1,4 @@
 sprite=assets/image/table_horiz.png
 hitbox=0x60x400x100
 id=13
+type=0

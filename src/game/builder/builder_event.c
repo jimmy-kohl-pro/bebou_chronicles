@@ -32,29 +32,29 @@ void manage_build_camera(window_t *win, sfView *view, float elapsed_time)
 }
 
 static void released_key(window_t *win, game_t *game,
-                        sfEvent evt, props_list_t **posing_props)
+                        sfEvent evt, objects_list_t **posing_objects)
 {
     sfFloatRect rect;
-    props_to_del_t temp;
+    objects_to_del_t temp;
 
-    if (evt.mouseButton.button == sfMouseRight && !(*posing_props)) {
-        temp = find_click_props(
+    if (evt.mouseButton.button == sfMouseRight && !(*posing_objects)) {
+        temp = find_click_objects(
         sfRenderWindow_mapPixelToCoords(win->window, win->mouse,
-        game->build->view), game->map->props);
-        delete_posing_props(&game->map, temp);
+        game->build->view), game->map->objects);
+        delete_posing_objects(&game->map, temp);
     }
     if ((evt.key.code == sfKeyEscape || evt.mouseButton.button == sfMouseRight)
-    && posing_props)
-        (*posing_props) = NULL;
+    && posing_objects)
+        (*posing_objects) = NULL;
     else if (evt.key.code == sfKeyEscape) {
         game->state = IN_GAME;
         game->player->direction = 0;
     }
-    if (evt.mouseButton.button == sfMouseLeft && (*posing_props)) {
-        rect = sfSprite_getGlobalBounds((*posing_props)->sprite->sprite);
-        add_posing_props(&game->map, (*posing_props)->name,
-        (sfVector2f){(*posing_props)->sprite->pos.x - rect.width / 2,
-        (*posing_props)->sprite->pos.y - rect.height / 2});
+    if (evt.mouseButton.button == sfMouseLeft && (*posing_objects)) {
+        rect = sfSprite_getGlobalBounds((*posing_objects)->sprite->sprite);
+        add_posing_objects(&game->map, (*posing_objects)->name,
+        (sfVector2f){(*posing_objects)->sprite->pos.x - rect.width / 2,
+        (*posing_objects)->sprite->pos.y - rect.height / 2});
     }
     if (evt.key.code == sfKeyE)
         game->build->state = CATALOG;
@@ -76,7 +76,7 @@ void builder_event(window_t *win, game_t *game)
             sfRenderWindow_close(win->window);
         if (win->event.type == sfEvtKeyReleased
         || win->event.type == sfEvtMouseButtonPressed)
-            released_key(win, game, win->event, &game->build->posing_props);
+            released_key(win, game, win->event, &game->build->posing_objects);
         if (win->event.type == sfEvtMouseButtonReleased)
             released_mouse(win, game);
     }

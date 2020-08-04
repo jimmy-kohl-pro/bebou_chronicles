@@ -10,19 +10,19 @@
 #include "map.h"
 
 static void move_sprite(player_t *player, sfVector2f map_size,
-                                    props_t *props, float offset)
+                                    objects_t *objects, float offset)
 {
     if (player->direction & UP && player->sprite->pos.y > 0
-    && !is_collide(player->sprite, props, fvec(0, -offset)))
+    && !is_collide(player->sprite, objects, fvec(0, -offset)))
         player->sprite->pos.y -= offset;
     if (player->direction & DOWN && player->sprite->pos.y < map_size.y
-    && !is_collide(player->sprite, props, fvec(0, offset)))
+    && !is_collide(player->sprite, objects, fvec(0, offset)))
         player->sprite->pos.y += offset;
     if (player->direction & LEFT && player->sprite->pos.x > 0
-    && !is_collide(player->sprite, props, fvec(-offset, 0)))
+    && !is_collide(player->sprite, objects, fvec(-offset, 0)))
         player->sprite->pos.x -= offset;
     if (player->direction & RIGHT && player->sprite->pos.x < map_size.x
-    && !is_collide(player->sprite, props, fvec(offset, 0)))
+    && !is_collide(player->sprite, objects, fvec(offset, 0)))
         player->sprite->pos.x += offset;
 }
 
@@ -40,14 +40,14 @@ int sprite_direction(int dir)
 }
 
 int check_player_move(player_t *player, sfVector2f map_size,
-                            props_t *props, float elapsed_time)
+                            objects_t *objects, float elapsed_time)
 {
     if (player->direction != NONE) {
         player->sprite->rect.top = player->sprite->rect.height *
                                     (sprite_direction(player->direction) - 1);
         update_animclock(player->speed_anim / player->speed_move,
                         player->sprite, 7);
-        move_sprite(player, map_size, props,
+        move_sprite(player, map_size, objects,
                     player->speed_move * elapsed_time);
         sfSprite_setTextureRect(player->sprite->sprite, player->sprite->rect);
     } else {

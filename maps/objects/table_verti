@@ -1,3 +1,4 @@
 sprite=assets/image/table_verti.png
 hitbox=0x60x130x340
 id=12
+type=0

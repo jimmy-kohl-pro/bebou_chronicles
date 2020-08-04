@@ -10,7 +10,7 @@
 #include "tools.h"
 #include "my.h"
 
-void update_props_coords(int *item_x, int *item_y, props_list_t *element,
+void update_objects_coords(int *item_x, int *item_y, objects_list_t *element,
                             sfVector2f invent_pos)
 {
     element->sprite_ico->pos.x = invent_pos.x + 183 * *item_x + 45;
@@ -25,16 +25,16 @@ void update_props_coords(int *item_x, int *item_y, props_list_t *element,
     }
 }
 
-void display_all_props(window_t *win, props_list_t *items_list,
+void display_all_objects(window_t *win, objects_list_t *items_list,
                         sfVector2f invent_pos)
 {
-    props_list_t *element = items_list;
+    objects_list_t *element = items_list;
     int item_x = 0;
     int item_y = 0;
 
     while (element && item_y < 4) {
         if (element->nb) {
-            update_props_coords(&item_x, &item_y, element,
+            update_objects_coords(&item_x, &item_y, element,
                                 invent_pos);
             display_sprite(win->window, element->sprite_ico);
             if (element->nb > 1)
@@ -47,5 +47,5 @@ void display_all_props(window_t *win, props_list_t *items_list,
 void display_catalog(window_t *win, game_t *game)
 {
     display_sprite(win->window, game->build->catalog);
-    display_all_props(win, game->build->props_list, game->build->catalog->pos);
+    display_all_objects(win, game->build->objects_list, game->build->catalog->pos);
 }

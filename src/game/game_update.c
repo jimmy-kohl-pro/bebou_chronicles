@@ -15,7 +15,7 @@ void update_game(window_t *win, game_t *game)
         check_fight(game);
     if (!game->dialogue->activated)
         check_player_move(game->player, game->map->size,
-                    game->map->props, game->time_elapsed);
+                    game->map->objects, game->time_elapsed);
     update_camera(game->camera, game->player, game->map->size);
     ninja_skill(game->player, game->fight);
 }

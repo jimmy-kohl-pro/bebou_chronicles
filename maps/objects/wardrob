@@ -1,3 +1,4 @@
 sprite=assets/image/wardrob.png
 hitbox=0x350x333x150
 id=14
+type=0

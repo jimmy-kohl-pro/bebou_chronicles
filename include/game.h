@@ -20,7 +20,7 @@ struct file_save_s;
 
 // From map.h
 struct map_s;
-struct props_s;
+struct objects_s;
 
 // From build_map.h
 struct build_s;
@@ -386,7 +386,7 @@ void display_hud(window_t *win, game_t *game);
 void update_game(window_t *win, game_t *game);
 
 int check_player_move(player_t *player, sfVector2f map_size,
-                            struct props_s *props, float elapsed_time);
+                            struct objects_s *objects, float elapsed_time);
 
 void update_camera(camera_t *camera, player_t *player, sfVector2f map);
 
@@ -426,9 +426,9 @@ void display_dialogue(window_t *win, game_t *game);
 
 void check_dialogues(window_t *win, game_t *game);
 
-int is_collide(sprite_t *player, struct props_s *props, sfVector2f offset);
+int is_collide(sprite_t *player, struct objects_s *objects, sfVector2f offset);
 
-int is_click(struct props_s *props, sfVector2f mouse, char *name);
+int is_click(struct objects_s *objects, sfVector2f mouse, char *name);
 
 sprite_t *create_noble_sprite(void);
 

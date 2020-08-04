@@ -39,6 +39,6 @@ void display_game(window_t *win, game_t *game)
     }
     display_particle(win, game);
     if (game->hitbox_activated)
-        display_hitbox(win, game->map->props, game->player);
+        display_hitbox(win, game->map->objects, game->player);
     manage_cheat(win, game);
 }

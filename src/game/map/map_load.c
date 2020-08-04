@@ -19,7 +19,7 @@ map_t *map_load(char *map_name)
         return NULL;
     map->name = map_name;
     map->pattern = read_pattern(map_brut, &map->size);
-    map->props = read_props(map_brut);
+    map->objects = read_objects(map_brut);
     return map;
 }
 

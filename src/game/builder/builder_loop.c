@@ -22,8 +22,8 @@ void display_build(window_t *win, game_t *game)
 {
     sfRenderWindow_setView(win->window, game->build->view);
     display_map(win, game);
-    if (game->build->posing_props)
-        draw_posing_props(win, game->build->posing_props, game->build->view);
+    if (game->build->posing_objects)
+        draw_posing_objects(win, game->build->posing_objects, game->build->view);
 }
 
 void build_update(window_t *win, game_t *game)

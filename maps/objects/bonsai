@@ -1,3 +1,4 @@
 sprite=assets/image/bonsai.png
 hitbox=20x100x80x50
 id=15
+type=0

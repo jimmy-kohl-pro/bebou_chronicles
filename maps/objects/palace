@@ -1,3 +1,4 @@
 sprite=assets/image/palace.png
 hitbox=115x717x1823x548
 id=5
+type=0
