@@ -31,9 +31,8 @@ void add_all_var(game_t *game, char ***save)
     new_var("pos", my_strthreecat(float_str(game->player->sprite->pos.x, 2),
                     ",", float_str(game->player->sprite->pos.y, 2)), save);
     new_var("map", game->map->name, save);
-    new_var("custom", my_strthreecat(my_strthreecat(int_str(game->player->
-    custom->face_id), ":", int_str(game->player->custom->hair_id)),
-    ":", int_str(game->player->custom->shirt_id)), save);
+    new_var("custom", my_strmasscat(9, int_str(game->player->custom->face_id), ":", int_str(game->player->custom->hair_id), ":",
+    int_str(game->player->custom->shirt_id), ":", int_str(game->player->custom->pants_id), ":", int_str(game->player->custom->shoes_id)), save);
     new_var("level", int_str(game->stats->level), save);
     new_var("xp", int_str(game->stats->xp), save);
     new_var("health", int_str(game->fight->ennemy_health_int), save);

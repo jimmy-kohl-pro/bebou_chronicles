@@ -46,6 +46,7 @@ int my_str_isprintable(char const *);
 int my_showstr(char const *);
 int my_showmem(char const *, int);
 char *my_strcat(char const *, char const *);
+char *my_strmasscat(int nbr_str, char const *str, ...);
 char *my_strncat(char *, char const *, int);
 int my_intlen(int);
 int my_printf(const char *, ...);

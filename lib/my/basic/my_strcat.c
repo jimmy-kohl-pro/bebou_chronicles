@@ -6,6 +6,23 @@
 */
 
 #include "my.h"
+#include <stdarg.h>
+
+char *my_strmasscat(int nbr_str, char const *str, ...)
+{
+    va_list list;
+    char *cat = NULL;
+    char *new_str = NULL;
+
+    va_start(list, str);
+    cat = my_strdup(str);
+    for (int i = 1; i < nbr_str; i++) {
+        new_str = va_arg(list, char *);
+        cat = my_strcat(cat, new_str);
+    }
+    va_end(list);
+    return cat;
+}
 
 char *my_strthreecat(char const *src1, char const *src2, char const *src3)
 {

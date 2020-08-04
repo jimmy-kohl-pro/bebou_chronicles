@@ -29,11 +29,13 @@ int load_player_custom(player_t *player, char *custom_brut)
     char **custom_id = custom_brut ?
                     my_str_to_word_array(custom_brut, ":") : NULL;
 
-    if (!custom_id || my_arraylen(custom_id) != 3)
+    if (!custom_id || my_arraylen(custom_id) != 5)
         return FAIL;
     player->custom->face_id = my_getnbr(custom_id[0]);
     player->custom->hair_id = my_getnbr(custom_id[1]);
     player->custom->shirt_id = my_getnbr(custom_id[2]);
+    player->custom->pants_id = my_getnbr(custom_id[3]);
+    player->custom->shoes_id = my_getnbr(custom_id[4]);
     free_array(custom_id);
     return SUCCESS;
 }

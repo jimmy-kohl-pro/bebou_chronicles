@@ -6,10 +6,10 @@
 */
 
 #include "game.h"
+#include "map.h"
 
-static void delete_map(map_t map)
+static void delete_map(map_t *map)
 {
-    delete_sprite(map->sprite);
 }
 
 void delete_game(game_t *game)
